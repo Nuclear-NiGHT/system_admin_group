@@ -1,10 +1,37 @@
 import tkinter as tk
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 root = tk.Tk()
+root.title("Login")
 
-canvas = tk.Canvas(root, width=600, height=300)
+
+def openMainPage():
+    windowLog = tk.Toplevel(root)
+    windowLog.title("Access Log")
+    windowLog.geometry("450x300")
+
+
+def checkPassword():
+    username = textName.get("1.0", 'end-1c')
+    password = textPass.get("1.0", 'end-1c')
+
+    print(username)
+    print(password)
+
+    if username == "admin":
+        if password == "admin1":
+            openMainPage()
+
+            
+    else:
+        messagebox.showerror(message = "Wrong Credentials")
+        print("error")
+
+    
+canvas = tk.Canvas(root, width=100, height=150)
 canvas.grid(columnspan=5)
+root.geometry('450x300')
 
 logo = Image.open('logo.gif')
 logo = ImageTk.PhotoImage(logo)
@@ -27,6 +54,10 @@ labelPass.grid(column=2, row=2)
 
 textPass = tk.Text(width = 30, height = 1)
 textPass.grid(column = 3, row = 2)
+
+btnLogin = tk.Button(root, text = "Log in", font = "MyFont", command = checkPassword)
+btnLogin.grid(column = 3, row = 3)
+
 
 
 root.mainloop()
